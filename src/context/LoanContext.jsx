@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import axios from "axios";
 import { useAppContext } from "./AppContext";
 
@@ -29,6 +29,7 @@ const LoanProvider = ({ children }) => {
       //Add the latest result to the results array, also add the request payload
       addLoanResult(payload, data);
     } catch (error) {
+      console.log("Error fetching loan result, check URL and port in Home");
       console.log(error);
     }
   };

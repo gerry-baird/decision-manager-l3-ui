@@ -23,6 +23,7 @@ const PricingProvider = (props) => {
       setPrice(data.Base_Price);
       addPricingResult(age, priorIncidents, data.Base_Price);
     } catch (error) {
+      console.log("Error fetching pricing result, check URL and port in Home");
       console.log(error);
     }
   };

@@ -36,7 +36,7 @@ export default function MyAppBar() {
     <AppBar position="sticky">
       <StyledToolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          DM Demo UI
+          IBM Decision Manager Open Edition
         </Typography>
 
         {/* <Button color="inherit" onClick={(e) => setMenuOpen(true)}>
@@ -70,6 +70,27 @@ export default function MyAppBar() {
         </MenuItem>
         <MenuItem onClick={(e) => handleLink("https://kogito.kie.org/")}>
           Kogito
+        </MenuItem>
+        <MenuItem
+          onClick={(e) =>
+            handleLink(
+              "https://kiegroup.github.io/dmn-feel-handbook/#dmn-feel-handbook"
+            )
+          }
+        >
+          FEEL
+        </MenuItem>
+        <MenuItem
+          onClick={(e) => handleLink("https://learn-dmn-in-15-minutes.com/")}
+        >
+          DMN 15 Mins
+        </MenuItem>
+        <MenuItem
+          onClick={(e) =>
+            handleLink("https://github.com/gerry-baird/decision-manager-l3-ui")
+          }
+        >
+          This App on github
         </MenuItem>
       </Menu>
     </AppBar>

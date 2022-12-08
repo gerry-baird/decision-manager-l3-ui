@@ -7,12 +7,13 @@ import {
   TextField,
   Button,
   Typography,
-  FormGroup,
-  FormControlLabel,
-  Switch,
+  IconButton,
 } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import Grid from "@mui/material/Unstable_Grid2";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAlt";
+import SentimentNeutralIcon from "@mui/icons-material/SentimentNeutral";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
 
 const DEFAULT_RATE = 2.5;
 
@@ -105,6 +106,36 @@ const LoanForm = () => {
     }
   };
 
+  const loadMaybePreset = (e) => {
+    setRate(DEFAULT_RATE);
+    setPrice(120000);
+    setCreditScore(700);
+    setDownPayment(10000);
+    setMonthlyIncome(2100);
+  };
+  const loadApprovedPreset = (e) => {
+    setRate(DEFAULT_RATE);
+    setPrice(120000);
+    setCreditScore(800);
+    setDownPayment(10000);
+    setMonthlyIncome(3000);
+  };
+
+  const loadRejectedPreset = (e) => {
+    setRate(DEFAULT_RATE);
+    setPrice(120000);
+    setCreditScore(670);
+    setDownPayment(10000);
+    setMonthlyIncome(2100);
+  };
+
+  //Set the background colour of the results area based on the
+  //prequalificatio result
+  let resultMood = "#EBF5FB";
+  if (preQualification === "Likely approved") resultMood = "#ABEBC6";
+  if (preQualification === "Possibly approved") resultMood = "#F0B27A";
+  if (preQualification === "Likely disapproved") resultMood = "#E74C3C";
+
   return (
     <Box flex={8} p={2}>
       <Paper sx={{ ml: 2, p: 4 }}>
@@ -115,16 +146,22 @@ const LoanForm = () => {
             </Typography>
           </Grid>
           <Grid xs={6}>
-            <FormGroup>
-              <FormControlLabel control={<Switch />} label="Dynamic" />
-            </FormGroup>
+            <IconButton onClick={() => loadApprovedPreset()}>
+              <SentimentSatisfiedAltIcon color="success" />
+            </IconButton>
+            <IconButton onClick={() => loadMaybePreset()}>
+              <SentimentNeutralIcon color="warning" />
+            </IconButton>
+            <IconButton onClick={() => loadRejectedPreset()}>
+              <SentimentVeryDissatisfiedIcon color="error" />
+            </IconButton>
           </Grid>
           <Grid xs={6}>
             <TextField
               label="Loan Rate %"
               name="rate"
               variant="outlined"
-              defaultValue={rate}
+              value={rate}
               fullWidth
               sx={{ mt: 1, mb: 1 }}
               onChange={(e) => setRate(e.target.value)}
@@ -137,7 +174,7 @@ const LoanForm = () => {
               label="Purchase Price"
               name="price"
               variant="outlined"
-              defaultValue={price}
+              value={price}
               fullWidth
               sx={{ mt: 1, mb: 1 }}
               onChange={(e) => setPrice(e.target.value)}
@@ -150,7 +187,7 @@ const LoanForm = () => {
               label="Down Payment"
               name="downPayment"
               variant="outlined"
-              defaultValue={downPayment}
+              value={downPayment}
               fullWidth
               sx={{ mt: 1, mb: 1 }}
               onChange={(e) => setDownPayment(e.target.value)}
@@ -166,7 +203,7 @@ const LoanForm = () => {
               label="Monthly Income"
               name="monthlyIncome"
               variant="outlined"
-              defaultValue={monthlyIncome}
+              value={monthlyIncome}
               fullWidth
               sx={{ mt: 1, mb: 1 }}
               onChange={(e) => setMonthlyIncome(e.target.value)}
@@ -182,7 +219,7 @@ const LoanForm = () => {
               label="Credit Score"
               name="creditScore"
               variant="outlined"
-              defaultValue={creditScore}
+              value={creditScore}
               fullWidth
               sx={{ mt: 1, mb: 1 }}
               onChange={(e) => setCreditScore(e.target.value)}
@@ -202,35 +239,41 @@ const LoanForm = () => {
         >
           Check Application
         </Button>
-        <Grid container spacing={1}>
-          <Grid xs={6}>
-            <Typography variant="h6" gutterBottom>
-              Loan Response
-            </Typography>
+        <Box sx={{ p: 2 }} bgcolor={resultMood}>
+          <Grid container spacing={1}>
+            <Grid xs={6}>
+              <Typography variant="h6" gutterBottom>
+                Loan Response
+              </Typography>
+            </Grid>
+            <Grid xs={6}></Grid>
+            <Grid xs={6}>
+              <Typography variant="body1">
+                Loan Amount : {loanAmount}
+              </Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography variant="body1">
+                Affordability : {affordability}
+              </Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography variant="body1">
+                Pre-Qualify : {preQualification}
+              </Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography variant="body1">
+                Loan payment : {loanPayment}
+              </Typography>
+            </Grid>
+            <Grid xs={6}>
+              <Typography variant="body1">
+                Housing Expense : {housing}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid xs={6}></Grid>
-          <Grid xs={6}>
-            <Typography variant="body1">Loan Amount : {loanAmount}</Typography>
-          </Grid>
-          <Grid xs={6}>
-            <Typography variant="body1">
-              Affordability : {affordability}
-            </Typography>
-          </Grid>
-          <Grid xs={6}>
-            <Typography variant="body1">
-              Pre-Qualify : {preQualification}
-            </Typography>
-          </Grid>
-          <Grid xs={6}>
-            <Typography variant="body1">
-              Loan payment : {loanPayment}
-            </Typography>
-          </Grid>
-          <Grid xs={6}>
-            <Typography variant="body1">Housing Expense : {housing}</Typography>
-          </Grid>
-        </Grid>
+        </Box>
       </Paper>
     </Box>
   );

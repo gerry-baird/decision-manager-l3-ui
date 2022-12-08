@@ -9,7 +9,7 @@ import {
   ListItemText,
 } from "@mui/material";
 import { Group, Home } from "@mui/icons-material";
-import FlightIcon from "@mui/icons-material/Flight";
+
 import SellIcon from "@mui/icons-material/Sell";
 
 const Sidebar = () => {
@@ -44,14 +44,6 @@ const Sidebar = () => {
                 <Group />
               </ListItemIcon>
               <ListItemText primary="Loans" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton onClick={() => handleRouteClick("/vacation")}>
-              <ListItemIcon>
-                <FlightIcon />
-              </ListItemIcon>
-              <ListItemText primary="Vacation" />
             </ListItemButton>
           </ListItem>
         </List>
