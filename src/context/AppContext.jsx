@@ -2,8 +2,8 @@ import React, { useState, useContext } from "react";
 
 const AppContext = React.createContext();
 
-const DEFAULT_PRICING_URL = "http://localhost:8080/pricing";
-const DEFAULT_LOAN_URL = "http://localhost:8080/Loan-PreQualification";
+const DEFAULT_PRICING_URL = "http://localhost:8123/pricing";
+const DEFAULT_LOAN_URL = "http://localhost:8123/Loan-PreQualification";
 
 const AppProvider = (props) => {
   const children = props.children;
