@@ -43,7 +43,7 @@ const LoanForm = () => {
       setLoanPayment(loanResult["Loan payment"].toFixed(2));
       setLoanAmount(loanResult["Loan amount"]);
       setAffordability(loanResult["Affordability category"]);
-      setPrequalification(loanResult["Loan-PreQualification"]);
+      setPrequalification(loanResult["Loan PreQualification"]);
       setHousing(loanResult["Housing expense"].toFixed(2));
     }
   }, [loanResult]);
