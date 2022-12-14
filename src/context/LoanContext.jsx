@@ -44,7 +44,7 @@ const LoanProvider = ({ children }) => {
       const payment = data["Loan payment"].toFixed(2);
       const loanAmount = data["Loan amount"];
       const affordability = data["Affordability category"];
-      const preQualify = data["Loan-PreQualification"];
+      const preQualify = data["Loan PreQualification"];
       const housing = data["Housing expense"].toFixed(2);
       const loanRate = payload["Loan rate pct"];
       const purchasePrice = payload["Purchase price"];
